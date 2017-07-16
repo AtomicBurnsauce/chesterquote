@@ -1,0 +1,14 @@
+GetNewQuoteIntent a quote
+GetNewQuoteIntent a Chesterton quote
+GetNewQuoteIntent tell me a quote
+GetNewQuoteIntent tell me a Chesterton quote
+GetNewQuoteIntent give me a quote
+GetNewQuoteIntent give me a Chesterton quote
+GetNewQuoteIntent tell me quotes
+GetNewQuoteIntent tell me Chesterton quotes
+GetNewQuoteIntent give me quotes
+GetNewQuoteIntent give me Chesterton quotes
+GetNewQuoteIntent give me quotes by G.K. Chesterton
+GetNewQuoteIntent give me some quotes by G.K. Chesterton
+GetNewQuoteIntent tell me a quote by G.K. Chesterton
+GetNewQuoteIntent give me G.K. Chesterton

@@ -21,7 +21,7 @@ AlexaSkill.speechOutputType = {
 
 AlexaSkill.prototype.requestHandlers = {
     LaunchRequest: function (event, context, response) {
-        this.eventHandlers.onLaunch.call(this, event.request, event.session, response);   
+        this.eventHandlers.onLaunch.call(this, event.request, event.session, response);
     },
 
     IntentRequest: function (event, context, response) {
@@ -40,17 +40,16 @@ AlexaSkill.prototype.requestHandlers = {
 AlexaSkill.prototype.eventHandlers = {
     /**
      * Called when the session starts.
-     * Subclasses could have been overriden this function to open any necessary resources.
+     * Subclasses could have overriden this function to open any necessary resources.
      */
     onSessionStarted: function (sessionStartedRequest, session) {
-
     },
 
     /**
      * Called when the user invokes the skill without specifying what they want.
-     * The subclass must override this function and provide feedback to the user. 
+     * The subclass must override this function and provide feedback to the user.
      */
-    onLaunch: function (LaunchRequest, session, response) {
+    onLaunch: function (launchRequest, session, response) {
         throw "onLaunch should be overriden by subclass";
     },
 
@@ -73,8 +72,7 @@ AlexaSkill.prototype.eventHandlers = {
      * Called when the user ends the session.
      * Subclasses could have overriden this function to close any open resources.
      */
-    onSessionEnded: function (SessionEndedRequest, session) {
-
+    onSessionEnded: function (sessionEndedRequest, session) {
     }
 };
 
@@ -99,12 +97,12 @@ AlexaSkill.prototype.execute = function (event, context) {
         }
 
         if (event.session.new) {
-            this.eventsHandlers.onSessionStarted(event.request, event.session);
+            this.eventHandlers.onSessionStarted(event.request, event.session);
         }
 
         // Route the request to the proper handler which may have been overriden.
-        var requestHander = this.requestHandlers[event.request.type];
-        requestHander.call(this, event, context, new Response(context, event.session));
+        var requestHandler = this.requestHandlers[event.request.type];
+        requestHandler.call(this, event, context, new Response(context, event.session));
     } catch (e) {
         console.log("Unexpected exception " + e);
         context.fail(e);
@@ -118,7 +116,7 @@ var Response = function (context, session) {
 
 function createSpeechObject(optionsParam) {
     if (optionsParam && optionsParam.type === 'SSML') {
-        return  {
+        return {
             type: optionsParam.type,
             ssml: optionsParam.speech
         };
@@ -149,8 +147,8 @@ Response.prototype = (function () {
             };
         }
         var returnResult = {
-            version: '1.0',
-            response: alexaResponse
+                version: '1.0',
+                response: alexaResponse
         };
         if (options.session && options.session.attributes) {
             returnResult.sessionAttributes = options.session.attributes;
@@ -194,6 +192,6 @@ Response.prototype = (function () {
             }));
         }
     };
-}) ();
+})();
 
 module.exports = AlexaSkill;
